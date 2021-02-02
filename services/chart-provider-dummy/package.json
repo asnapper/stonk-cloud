@@ -1,11 +1,11 @@
 {
-  "name": "telegram-actor",
+  "name": "chart-provider-dummy",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/telegram-actor/src/main.js",
+    "start": "node dist/main.js",
     "dev": "tsc-watch --onSuccess \"npm run start\""
   },
   "keywords": [],
