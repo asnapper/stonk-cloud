@@ -1,0 +1,34 @@
+version: "3.6"
+services:
+  telegram-provider:
+    build: 
+      context: services/telegram-provider
+    environment:
+      RABBIT_URL: 'amqp://guest:guest@rabbitmq?connection_attempts=5&retry_delay=5'
+      RABBIT_QUEUE_IN: stonk-bot-in
+      RABBIT_QUEUE_OUT: stonk-bot-out
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+    networks:
+      - network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+  rabbitmq:
+    image: 'rabbitmq:3.8-management'
+    healthcheck:
+      test: [ "CMD", "/opt/rabbitmq/sbin/rabbitmq-diagnostics", "check_running"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    networks:
+      - network
+networks:
+  network: {}
