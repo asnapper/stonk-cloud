@@ -1,7 +1,7 @@
 import TelegramBot from 'node-telegram-bot-api'
 import { getRabbitListener, getRabbitSender } from './rabbit'
 import { mapTelegramMessage } from './mappers'
-import { OutgoingMessage } from './interfaces'
+import { OutgoingMessage } from '../../common/ts/interfaces/telegram-messages'
 
 const { TELEGRAM_BOT_TOKEN, RABBIT_QUEUE_IN, RABBIT_QUEUE_OUT, RABBIT_URL } = process.env
 

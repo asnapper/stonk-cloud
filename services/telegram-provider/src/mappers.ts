@@ -1,5 +1,5 @@
 import TelegramBot from "node-telegram-bot-api"
-import { IncomingMessage } from "./interfaces"
+import { IncomingMessage } from '../../common/ts/interfaces/telegram-messages'
 
 export const mapTelegramMessage = (message: TelegramBot.Message, metadata: TelegramBot.Metadata): IncomingMessage | null => {
     const mappedMessage: Partial<IncomingMessage> = {

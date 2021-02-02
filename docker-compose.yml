@@ -1,5 +1,9 @@
 version: "3.6"
 services:
+  common-libs:
+    build: ./services/common
+    image: asnapper/stonk-common:latest
+    scale: 0
   telegram-provider:
     build: 
       context: services/telegram-provider
