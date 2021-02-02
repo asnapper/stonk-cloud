@@ -25,8 +25,10 @@ async function main() {
     bot.startPolling()
 
     bot.on('message', (message, metadata) => {
-        console.debug({ message, metadata, token: TELEGRAM_BOT_TOKEN })
-        send(mapTelegramMessage(message, metadata))
+        if (!message.from?.is_bot) {
+            console.debug({ message, metadata, token: TELEGRAM_BOT_TOKEN })
+            send(mapTelegramMessage(message, metadata))
+        }
     })
 
 }

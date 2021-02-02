@@ -17,6 +17,18 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
+  telegram-actor:
+    build: 
+      context: services/telegram-actor
+    environment:
+      RABBIT_URL: 'amqp://guest:guest@rabbitmq?connection_attempts=5&retry_delay=5'
+      RABBIT_QUEUE_IN: stonk-bot-in
+      RABBIT_QUEUE_OUT: stonk-bot-out
+    networks:
+      - network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
   rabbitmq:
     image: 'rabbitmq:3.8-management'
     healthcheck:
