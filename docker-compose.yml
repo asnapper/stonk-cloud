@@ -5,6 +5,7 @@ services:
     image: asnapper/stonk-common:latest
     scale: 0
   telegram-provider:
+    image: asnapper/telegram-provider:latest
     build: 
       context: services/telegram-provider
     environment:
@@ -18,6 +19,7 @@ services:
       rabbitmq:
         condition: service_healthy
   chart-provider-dummy:
+    image: asnapper/chart-provider-dummy:latest
     build: 
       context: services/chart-provider-dummy
     environment:
@@ -29,6 +31,7 @@ services:
       rabbitmq:
         condition: service_healthy
   iex-data-provider:
+    image: asnapper/iex-data-provider:latest
     build: 
       context: services/iex-data-provider
     environment:
@@ -40,6 +43,7 @@ services:
       rabbitmq:
         condition: service_healthy
   telegram-actor:
+    image: asnapper/telegram-actor:latest
     build: 
       context: services/telegram-actor
     environment:
