@@ -28,7 +28,7 @@ export const getRabbitListener = async (queue: string, url: string) => {
             console.error('failed to decode incoming message', e, msg)
         }
     }, {
-        noAck: false
+        noAck: true
     })
 
     return emitter
