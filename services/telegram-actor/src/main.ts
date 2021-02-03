@@ -26,7 +26,7 @@ async function main() {
                 // TODO: implement buisness logic here
                 console.debug({msg})
                 const reply: OutgoingMessage = {
-                    to: msg.from,
+                    to: msg.chat,
                     type: 'text',
                     payload: 'result =',
                     chat: msg.chat
@@ -35,9 +35,11 @@ async function main() {
                 if (typeof msg.payload == 'string') {
                     const numbers = msg.payload?.match(/(\d+)/g) || []
                     console.debug({numbers})
-                    const result = await delegator.invoke('adder', ...numbers.map(n => parseInt(n, 10)))
-                    reply.payload += ` ${result}`
-                    send(reply)
+                    if (numbers.length > 1) {
+                        const result = await delegator.invoke('summer', ...numbers.map(n => parseInt(n, 10)))
+                        reply.payload += ` ${result}`
+                        send(reply)
+                    }
                 }
                 break;
         }

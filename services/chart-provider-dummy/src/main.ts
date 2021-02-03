@@ -1,9 +1,9 @@
 const { makeWorker } = require('amqp-delegate')
 
-const task = (a: number, b: number) => new Promise(resolve => setTimeout(() => resolve(a + b), 10))
+const task = (...a: Array<number>) => new Promise(resolve => setTimeout(() => resolve(a.reduce((acc, val) => acc + val, 0)), 10))
 
 const worker = makeWorker({
-  name: 'adder',
+  name: 'summer',
   task,
   url: process.env.RABBIT_URL
 })
